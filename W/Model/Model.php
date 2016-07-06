@@ -36,12 +36,11 @@ abstract class Model
 
 		if(empty($this->table)){
 			// Nom de la class enfant
-			$className = get_class($this);
+			$className = (new \ReflectionClass($this))->getShortName();
 
-			// Retire le Model et les antislashes et converti en underscore_case (snake_case)
+			// Retire le Model et converti en underscore_case (snake_case)
 			$tableName = str_replace('Model', '', $className);
-			$tableName = explode('\\', $tableName);
-			$tableName = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', end($tableName))), '_');
+			$tableName = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $tableName)), '_');
 		}
 		else {
 			$tableName = $this->table;
