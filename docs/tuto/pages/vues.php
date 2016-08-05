@@ -49,7 +49,7 @@
 		echo $w_current_route;
 
 		// affichera le nom du site défini dans le fichier de configuration
-		echo $w_current_route
+		echo $w_site_name;
 
 	?>
 &lt;/body>
