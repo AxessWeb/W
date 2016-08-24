@@ -110,6 +110,44 @@ abstract class Model
 		return $sth->fetch();
 	}
 
+    /**
+     * Récupère la ligne suivante de celle de l'identifiant
+     * @param integer Identifiant
+     * @return mixed Les données sous forme de tableau associatif
+     * @todo Retourner la première ligne si id est la dernière ligne
+     */
+    public function findNext($id){
+        if (!is_numeric($id)){
+            return false;
+        }
+
+        $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->primaryKey .'  = (SELECT MIN(id) FROM ' . $this->table . ' WHERE id > :id ) LIMIT 1';
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindValue(':id', $id);
+        $sth->execute();
+
+        return $sth->fetch();
+    }
+
+    /**
+     * Récupère la ligne précédente de celle de l'identifiant
+     * @param integer Identifiant
+     * @return mixed Les données sous forme de tableau associatif
+     * @todo Retourner la dernière ligne si id est la première ligne
+     */
+    public function findPrevious($id){
+        if (!is_numeric($id)){
+            return false;
+        }
+
+        $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->primaryKey .'  = (SELECT MAX(id) FROM ' . $this->table . ' WHERE id < :id ) LIMIT 1';
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindValue(':id', $id);
+        $sth->execute();
+
+        return $sth->fetch();
+    }
+
 	/**
 	 * Récupère toutes les lignes de la table
 	 * @param $orderBy La colonne en fonction de laquelle trier
