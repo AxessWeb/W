@@ -125,14 +125,15 @@ abstract class Model
         $sth->bindValue(':id', $id);
         $sth->execute();
 
-        if($result = $sth->fetch()) {
-            return $result;
-        }else{
+        $result = $sth->fetch();
+        if(!$result) {
             $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->primaryKey .'  = (SELECT MIN(id) FROM ' . $this->table . ') LIMIT 1';
             $sth = $this->dbh->prepare($sql);
             $sth->execute();
-            return $sth->fetch();
+            $result = $sth->fetch();
         }
+
+        return $result;
     }
 
     /**
@@ -150,14 +151,15 @@ abstract class Model
         $sth->bindValue(':id', $id);
         $sth->execute();
 
-        if($result = $sth->fetch()) {
-            return $result;
-        }else{
+        $result = $sth->fetch();
+        if(!$result) {
             $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->primaryKey .'  = (SELECT MAX(id) FROM ' . $this->table . ') LIMIT 1';
             $sth = $this->dbh->prepare($sql);
             $sth->execute();
-            return $sth->fetch();
+            $result = $sth->fetch();
         }
+
+        return $result;
     }
 
 	/**
