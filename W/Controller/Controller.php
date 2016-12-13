@@ -114,7 +114,6 @@ class Controller
 	 */
 	public function showNotFound()
 	{
-		//@todo 404
 		header('HTTP/1.0 404 Not Found');
 
 		$file = self::PATH_VIEWS.'/w_errors/404.php';
