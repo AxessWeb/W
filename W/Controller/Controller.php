@@ -116,6 +116,11 @@ class Controller
 
 		// Affiche le template
 		echo $engine->render($file, $data);
+		
+		// Supprime les messages Flash pour qu'ils n'apparaissent qu'une fois
+		if (isset($_SESSION['flash']) {
+			unset($_SESSION['flash']);
+		}
 		die();
 	}
 
