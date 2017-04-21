@@ -15,6 +15,8 @@ class UsersModel extends Model
 		$app = getApp();
 		// Définit la table en fonction de la config
 		$this->setTable($app->getConfig('security_user_table'));
+		// Définit la clé primaire en fonction de la config
+		$this->setPrimaryKey($app->getConfig('security_id_property'));
 
 		$this->dbh = ConnectionModel::getDbh();
 	}
