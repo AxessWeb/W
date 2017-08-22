@@ -348,7 +348,7 @@ abstract class Model
 	 * Retourne l'identifiant de la dernière ligne insérée
 	 * @return int L'identifiant
 	 */
-	public function lastInsertId()
+	protected function lastInsertId()
 	{
 		return $this->dbh->lastInsertId();
 	}
