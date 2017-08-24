@@ -42,6 +42,9 @@ public function demo()
 
 	//retourne une erreur 404
 	$this->showNotFound();
+
+	//stocke un message flash dans la session avec le type default, info, success, danger, warning
+	$this->flash('Mon message', 'danger');
 }
 
 </code></pre>
