@@ -56,22 +56,22 @@ class UsersModel extends Model
 	public function emailExists($email)
 	{
 
-	   $app = getApp();
+		$app = getApp();
 
-	   $sql = 'SELECT ' . $app->getConfig('security_email_property') . ' FROM ' . $this->table .
-	          ' WHERE ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
+		$sql = 'SELECT ' . $app->getConfig('security_email_property') . ' FROM ' . $this->table .
+			   ' WHERE ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
 
-	   $dbh = ConnectionModel::getDbh();
-	   $sth = $dbh->prepare($sql);
-	   $sth->bindValue(':email', $email);
-	   if($sth->execute()){
-	       $foundUser = $sth->fetch();
-	       if($foundUser){
-	           return true;
-	       }
-	   }
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':email', $email);
+		if($sth->execute()){
+			$foundUser = $sth->fetch();
+			if($foundUser){
+				return true;
+			}
+		}
 
-	   return false;
+		return false;
 	}
 
 	/**
@@ -82,21 +82,21 @@ class UsersModel extends Model
 	public function usernameExists($username)
 	{
 
-	    $app = getApp();
+		$app = getApp();
 
-	    $sql = 'SELECT ' . $app->getConfig('security_username_property') . ' FROM ' . $this->table .
-	           ' WHERE ' . $app->getConfig('security_username_property') . ' = :username LIMIT 1';
+		$sql = 'SELECT ' . $app->getConfig('security_username_property') . ' FROM ' . $this->table .
+			   ' WHERE ' . $app->getConfig('security_username_property') . ' = :username LIMIT 1';
 
-	    $dbh = ConnectionModel::getDbh();
-	    $sth = $dbh->prepare($sql);
-	    $sth->bindValue(':username', $username);
-	    if($sth->execute()){
-	        $foundUser = $sth->fetch();
-	        if($foundUser){
-	            return true;
-	        }
-	    }
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':username', $username);
+		if($sth->execute()){
+		$foundUser = $sth->fetch();
+			if($foundUser){
+				return true;
+			}
+		}
 
-	    return false;
+		return false;
 	}
 }

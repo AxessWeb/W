@@ -193,12 +193,12 @@ abstract class Model
 
 			$sql .= ' ORDER BY '.$orderBy.' '.$orderDir;
 		}
-        if($limit){
-            $sql .= ' LIMIT '.$limit;
-            if($offset){
-                $sql .= ' OFFSET '.$offset;
-            }
-        }
+		if($limit){
+			$sql .= ' LIMIT '.$limit;
+			if($offset){
+				$sql .= ' OFFSET '.$offset;
+			}
+		}
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 
@@ -343,6 +343,77 @@ abstract class Model
 		}
 		return $this->find($id);
 	}
+
+	/**
+	 * Récupère une ligne de la table en fonction d'une colonne et sa valeur
+	 * @param  string $column La colonne
+	 * @param  string $value La valeur à rechercher
+	 * @return mixed Les données sous forme de tableau associatif
+	 */
+	public function findBy($column = '', $value = '')
+	{
+		if(empty($column)){
+			return false;
+		}
+
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE `' . $column . '` = :value LIMIT 1';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':value', $value);
+		$sth->execute();
+
+		return $sth->fetch();
+	}
+
+
+	/**
+	 * Récupère toutes les lignes de la table en fonction d'une colonne et sa valeur
+	 * @param $column La colonne
+	 * @param $value La valeur à rechercher	 
+	 * @param $orderBy La colonne en fonction de laquelle trier
+	 * @param $orderDir La direction du tri, ASC ou DESC
+	 * @param $limit Le nombre maximum de résultat à récupérer
+	 * @param $offset La position à partir de laquelle récupérer les résultats
+	 * @return array Les données sous forme de tableau multidimensionnel
+	 */
+	public function findAllBy($column = '', $value = '', $orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null)
+	{
+		if(empty($column)){
+			return false;
+		}
+
+		$sql = 'SELECT * FROM ' . $this->table. ' WHERE `' . $column . '` = :value';
+		if (!empty($orderBy)){
+
+			//sécurisation des paramètres, pour éviter les injections SQL
+			if(!preg_match('#^[a-zA-Z0-9_$]+$#', $orderBy)){
+				die('Error: invalid orderBy param');
+			}
+			$orderDir = strtoupper($orderDir);
+			if($orderDir != 'ASC' && $orderDir != 'DESC'){
+				die('Error: invalid orderDir param');
+			}
+			if ($limit && !is_int($limit)){
+				die('Error: invalid limit param');
+			}
+			if ($offset && !is_int($offset)){
+				die('Error: invalid offset param');
+			}
+
+			$sql.= ' ORDER BY '.$orderBy.' '.$orderDir;
+		}
+		if($limit){
+			$sql.= ' LIMIT '.$limit;
+			if($offset){
+				$sql.= ' OFFSET '.$offset;
+			}
+		}
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':value', $value);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
 
 	/**
 	 * Retourne l'identifiant de la dernière ligne insérée

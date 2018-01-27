@@ -16,6 +16,12 @@ class Controller
 	 */
 	const PATH_VIEWS = '../app/Views';
 
+
+	/**
+	 * Permet l'ajout de données additionnelles aux templates
+	 */
+	protected $addDataViews = [];
+
 	/**
 	 * Génère l'URL correspondant à une route nommée
 	 * @param  string $routeName Le nom de route
@@ -28,11 +34,11 @@ class Controller
 		$params = (empty($params)) ? array() : $params;
 
 		$app = getApp();
-    	$router = $app->getRouter();
-    	$routeUrl = $router->generate($routeName, $params);
+		$router = $app->getRouter();
+		$routeUrl = $router->generate($routeName, $params);
 		$url = $routeUrl;
 		if($absolute){
-	    	$u = \League\Url\Url::createFromServer($_SERVER);
+			$u = \League\Url\Url::createFromServer($_SERVER);
 			$url = $u->getBaseUrl() . $routeUrl;
 		}
 		return $url;
@@ -56,7 +62,7 @@ class Controller
 	public function redirectToRoute($routeName, array $params = array())
 	{
 		$uri = $this->generateUrl($routeName, $params);
-    	$this->redirect($uri);
+		$this->redirect($uri);
 	}
 
 	/** 
@@ -110,6 +116,11 @@ class Controller
 				'w_flash_message' => $flash_message,
 			]
 		);
+
+		// Ajoute des données additionnelles à tous les templates
+		if(!empty($this->addDataViews) && is_array($this->addDataViews)){
+			$engine->addData($this->addDataViews);
+		}
 
 		// Retire l'éventuelle extension .php
 		$file = str_replace('.php', '', $file);
@@ -201,6 +212,18 @@ class Controller
 		else {
 			die('Error in json encoding');
 		}
+	}
+
+
+	/**
+	 * Retourne l'URL relative d'un asset
+	 * @param string $path Le chemin vers le fichier, relatif à public/assets/
+	 * @return string L'URL relative vers le fichier
+	 */
+	public static function assetUrl($path)
+	{
+		$app = getApp();
+		return $app->getBasePath() . '/assets/' . ltrim($path, '/');
 	}
 
 }

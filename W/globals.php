@@ -1,15 +1,15 @@
 <?php
 
-//espace de nom global
+// Espace de nom global
 namespace {
 
 	/**
 	 * print_r coké
 	 * @param  mixed $var La variable a déboger
 	 */
-	function debug($var)
+	function debug($var, $type = 'print')
 	{
-		echo '<pre style="padding: 10px; font-family: Consolas, Monospace; background-color: #000; color: #FFF;">';
+		echo '<pre class="debug" style="padding: 10px; font-family: Consolas, Monospace; background-color: #000; color: #FFF;">';
 		print_r($var);
 		echo '</pre>';
 	}
