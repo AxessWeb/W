@@ -36,7 +36,8 @@
         "psr-4": {
             "W\\": "W/",
             "": "app/"
-        }
+        },
+        "files": ["W/globals.php"]
     },
     "repositories": [
         {
