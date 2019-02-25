@@ -1,7 +1,7 @@
 {
     "name": "webforce3/w",
     "description": "Light and pedagogic PHP framework",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "minimum-stability": "dev",
     "license": "MIT",
     "prefer-stable": true,

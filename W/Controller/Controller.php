@@ -68,11 +68,11 @@ class Controller
 	/** 
 	 * Affiche un flash message
 	 * @param string $message Le message que l'on souhaite afficher
-	 * @param string $level Le type de message flash (default, info, success, danger, warning)
+	 * @param string $level Le type de message flash (default, notice, info, success, danger, warning)
 	 */
 	public function flash($message, $level = 'info'){
 
-		$allowLevel = ['default', 'info', 'success', 'danger', 'warning'];
+		$allowLevel = ['default', 'notice', 'info', 'success', 'danger', 'warning'];
 
 		if(!in_array($level, $allowLevel)){
 			$level = 'info';
@@ -84,6 +84,17 @@ class Controller
 		];
 
 		return;
+	}
+
+	/**
+	 * Alias de méthode pour ressembler à Symfony
+	 * @info Paramètres inversés
+	 * @param string $level Le type de message flash (default, notice, info, success, danger, warning)
+	 * @param string $message Le message que l'on souhaite afficher
+	 */
+	public function addFlash($level = 'info', $message = '')
+	{
+		$this->flash($message, $level);
 	}
 
 
@@ -136,6 +147,14 @@ class Controller
 	}
 
 	/**
+	 * Alias de méthode pour ressembler à Symfony
+	 */
+	public function render($file, array $data = array())
+	{
+		$this->show($file, $data);
+	}
+
+	/**
 	 * Affiche une page 403
 	 */
 	public function showForbidden()
@@ -152,6 +171,14 @@ class Controller
 	}
 
 	/**
+	 * Alias de fonction 
+	 */
+	public function renderForbidden()
+	{
+		$this->showForbidden();
+	}
+
+	/**
 	 * Affiche une page 404
 	 */
 	public function showNotFound()
@@ -164,8 +191,17 @@ class Controller
 		}
 		else {
 			die('404');
-		}	
+		}
 	}
+
+	/**
+	 * Alias de fonction 
+	 */
+	public function renderNotFound()
+	{
+		$this->showNotFound();
+	}
+
 
 	/**
 	 * Récupère l'utilisateur actuellement connecté
@@ -212,6 +248,14 @@ class Controller
 		else {
 			die('Error in json encoding');
 		}
+	}
+
+	/**
+	 * Alias de méthode pour ressembler à Symfony
+	 */
+	public function json($data)
+	{
+		$this->showJson($data);
 	}
 
 
