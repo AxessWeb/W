@@ -1,0 +1,26 @@
+html, body {
+	font-family: Consolas, monaco, monospace;
+	background-color: #272822;
+	color: #F8F8F2;
+}
+
+.container {
+	margin: 50px;
+}
+
+a {
+	text-decoration: none;
+	color: #A6E22E;
+}
+
+a:hover {
+	color: #F92672;
+}
+
+h1 {
+	color: #F92672;
+}
+
+h2 {
+	color: #66D9EF;
+}

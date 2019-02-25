@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# PIQUÉ AU HTACCESS DE SYMFONY2 : 
+	# Determine the RewriteBase automatically and set it as environment variable.
+	# If you are using Apache aliases to do mass virtual hosting or installed the
+	# project in a subdirectory, the base path will be prepended to allow proper
+	# resolution of the index.php file and to redirect to the correct URI. It will
+	# work in environments without path prefix as well, providing a safe, one-size
+	# fits all solution.
+	RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+	RewriteRule ^(.*) - [E=W_BASE:%1]
+
+	# Pas de réécriture sur les vrais fichiers
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteRule .? - [L]
+
+	# Réécrit tout le reste à public/index.php.
+	RewriteRule .? %{ENV:W_BASE}/index.php [L]
+</IfModule>

@@ -1,0 +1,50 @@
+html, body {
+	font-family: 'Roboto', sans-serif;
+}
+
+pre {
+	font-size: 16px;
+}
+
+span.code {
+	font-family: Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+	color: #16a085;
+	background-color: #f7f7f7;
+}
+
+h3 {
+	border-bottom: 1px dotted #000;
+}
+
+h4 {
+	text-transform: uppercase;
+	margin-top: 16px;
+}
+
+h5 {
+	font-weight: bold;
+	color: #2c3e50;
+	margin-bottom: 3px;
+}
+
+a {
+	color: #c0392b;
+}
+
+a:hover {
+	color: #2980b9;
+}
+
+img {
+	margin: 20px 0;
+}
+
+.nav-pills > li > a {
+	font-weight: normal;
+}
+
+.nav-pills > li > a:hover, .nav-pills > li > a:focus, .nav-pills > li.active > a, 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	background-color: #272822;
+	color: #f8f8f2;
+}

@@ -1,5 +1,4 @@
-/* PrismJS 1.15.0
-https://prismjs.com/download.html?#themes=prism-okaidia&languages=markup+css+clike+javascript+markup-templating+php+php-extras */
+/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+php+php-extras */
 /**
  * okaidia theme for JavaScript, CSS and HTML
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
@@ -9,14 +8,13 @@ https://prismjs.com/download.html?#themes=prism-okaidia&languages=markup+css+cli
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #f8f8f2;
-	background: none;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
-	word-wrap: normal;
 	line-height: 1.5;
 
 	-moz-tab-size: 4;
@@ -46,7 +44,6 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
-	white-space: normal;
 }
 
 .token.comment,
@@ -97,8 +94,7 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.function,
-.token.class-name {
+.token.function {
 	color: #e6db74;
 }
 

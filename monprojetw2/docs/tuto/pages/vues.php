@@ -23,7 +23,7 @@
 <p>Mais Plates et W ajoutent quelques méthodes utiles par défaut :</p>
 <pre><code>/* app/Views/default/home.php */
 &lt;!DOCTYPE html>
-&lt;html lang="fr">
+&lt;html lang="en">
 &lt;head>
 	&lt;meta charset="UTF-8">
 	&lt;title>Document&lt;/title>
