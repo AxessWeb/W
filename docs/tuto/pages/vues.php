@@ -67,7 +67,7 @@
 public function demo()
 {
 	//affiche un template, tout en rendant des données disponibles dans celui-ci
-	$this->show('default/demo', ['username' => 'will']);
+	$this->render('default/demo', ['username' => 'will']);
 }
 //...
 </code></pre>

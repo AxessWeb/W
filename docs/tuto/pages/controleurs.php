@@ -25,10 +25,10 @@ public function demo()
 	 */
 
 	//affiche un template
-	$this->show('default/demo');
+	$this->render('default/demo');
 
 	//affiche un template, tout en rendant des données disponibles dans celui-ci
-	$this->show('default/demo', ['username' => 'will']);
+	$this->render('default/demo', ['username' => 'will']);
 
 	//redirige vers une autre page interne
 	$this->redirectToRoute('nom_de_la_route');
@@ -38,10 +38,10 @@ public function demo()
 
 	//retourne une réponse JSON
 	//... $data = [];
-	$this->showJson($data);
+	$this->renderJson($data);
 
 	//retourne une erreur 404
-	$this->showNotFound();
+	$this->renderNotFound();
 
 	//stocke un message flash dans la session avec le type default, info, success, danger, warning
 	$this->flash('Mon message', 'danger');
