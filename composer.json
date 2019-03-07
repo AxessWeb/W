@@ -1,7 +1,7 @@
 {
     "name": "webforce3/w",
     "description": "Light and pedagogic PHP framework",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "minimum-stability": "dev",
     "license": "MIT",
     "prefer-stable": true,
@@ -29,7 +29,6 @@
         "league/plates": "^3.3",
         "ircmaxell/random-lib": "^1.2",
         "ircmaxell/password-compat": "^1.0",
-        "league/uri": "^5.3",
         "phpmailer/phpmailer": "^6.0"
     },
     "autoload": {

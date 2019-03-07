@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
-	# PIQUÉ AU HTACCESS DE SYMFONY2 : 
+	# PIQUÉ AU HTACCESS DE SYMFONY : 
 	# Determine the RewriteBase automatically and set it as environment variable.
 	# If you are using Apache aliases to do mass virtual hosting or installed the
 	# project in a subdirectory, the base path will be prepended to allow proper

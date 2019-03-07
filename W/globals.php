@@ -4,14 +4,20 @@
 namespace {
 
 	/**
-	 * print_r coké
-	 * @param  mixed $var La variable a déboger
+	 * print_r/var_dump coké
+	 * @param $var La variable a debugger
+	 * @param $type Le type de sortie, print ou var_dump
 	 */
 	function debug($var, $type = 'print')
 	{
-		echo '<pre class="debug" style="padding: 10px; font-family: Consolas, Monospace; background-color: #000; color: #FFF;">';
-		print_r($var);
-		echo '</pre>';
+		print '<pre class="debug" style="position:relative;z-index:1200;padding:10px;font-family:Consolas, Monospace;background-color:#000;color:#FFF;">';
+		if($type == 'print'){
+			print_r($var);
+		}
+		else{			
+			var_dump($var);
+		}
+		print '</pre>';
 	}
 
 	/**

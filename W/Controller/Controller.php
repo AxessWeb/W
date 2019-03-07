@@ -38,8 +38,22 @@ class Controller
 		$routeUrl = $router->generate($routeName, $params);
 		$url = $routeUrl;
 		if($absolute){
-			$u = \League\Url\Url::createFromServer($_SERVER);
-			$url = $u->getBaseUrl() . $routeUrl;
+			// Définit le protocol
+			$baseUrl = 'http';
+			if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+				$baseUrl.= 's';
+			}
+			elseif(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
+				$baseUrl.= 's';
+			}
+			$baseUrl.= '://'.$_SERVER['HTTP_HOST'];
+
+			// On récupère le port si existant
+			if(isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] != '80') {
+				$baseUrl.= ':'. (int) $_SERVER['SERVER_PORT'];
+			}
+
+			$url = $baseUrl . $routeUrl;
 		}
 		return $url;
 	}
