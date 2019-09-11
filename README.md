@@ -1,3 +1,6 @@
+## Projet archivé.
+Le projet a migré ici [framework-w](https://github.com/framework-w)
+
 ## W
 
 W est un framework minimaliste. Il suit les structures et les grand thèmes des frameworks PHP OO MVC actuels, tout en en facilitant l'approche. Ce framework possède toutefois de nombreuses propriétés diverses permettant de répondre aux cas les plus habituels.
